@@ -1,0 +1,48 @@
+// Syntax version
+syntax = "proto3";
+
+// Service definition
+service JobService {
+    rpc GetJob (GetJobRequest) returns (JobResponse);
+    rpc PutJob (PutJobRequest) returns (Status);
+    rpc PrintQueueStats (BasicRequest) returns (Status);
+    rpc PurgeQueue (BasicRequest) returns (Status);
+}
+
+// Message types
+message Status {
+    string uuid = 1;
+    bool result = 2;
+}
+
+message JobData {
+    string identity = 1;
+    string job_id = 2;
+    string control = 3;
+    string command = 4;
+    string data = 5;
+    string info = 6;
+    string stderr = 7;
+    string stdout = 8;
+}
+
+message JobResponse {
+    string uuid = 1;
+    bool status = 2;
+    string target = 3;
+    JobData job = 4;
+}
+
+message GetJobRequest {
+    string target = 1;
+}
+
+message PutJobRequest {
+    JobData job = 1;
+}
+
+message BasicRequest {
+    bool verbose = 1;
+}
+
+

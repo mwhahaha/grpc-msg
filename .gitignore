@@ -1,0 +1,11 @@
+.tox
+*.egg-info
+*.eggs
+*.pyc
+.coverage
+.vscode
+build
+dist
+AUTHORS
+ChangeLog
+contrib/build-*
