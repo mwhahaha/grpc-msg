@@ -17,7 +17,7 @@ class JobServiceClient(object):
         self.stub = job_pb2_grpc.JobServiceStub(self.channel)
 
     def get_job(self, target):
-        """Gets a user.
+        """Gets a job for a target.
 
         :param target: The resource target of a job.
         :return none; outputs to the terminal.
@@ -80,5 +80,3 @@ class JobServiceClient(object):
         except grpc.RpcError as err:
             print(err.details())  # pylint: disable=no-member
             print('{}, {}'.format(err.code().name, err.code().value))  # pylint: disable=no-member
-
-
