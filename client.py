@@ -30,9 +30,11 @@ class JobServiceClient(object):
             if response.status:
                 print('Job fetched.')
                 print(response)
+                return True
             else:
                 print('No job found.')
                 print(response)
+                return False
         except grpc.RpcError as err:
             print(err.details())  # pylint: disable=no-member
             print('{}, {}'.format(err.code().name, err.code().value))  # pylint: disable=no-member
@@ -57,9 +59,11 @@ class JobServiceClient(object):
             response = self.stub.PutJob(request)
             print("Job submitted")
             print(response)
+            return True
         except grpc.RpcError as err:
             print(err.details())  # pylint: disable=no-member
             print('{}, {}'.format(err.code().name, err.code().value))  # pylint: disable=no-member
+            return False
 
     def print_stats(self):
         request = job_pb2.BasicRequest(verbose=False)
